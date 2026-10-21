@@ -206,6 +206,14 @@ a.card { text-decoration: none; display: flex; flex-direction: column; }
 .card--feature p { color: rgba(238,235,227,.75); }
 .card--feature .icon { background: rgba(218,172,71,.14); }
 .card--feature .more { color: var(--gold); }
+.card--wide { grid-column: 1 / -1; }
+.card__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.card__links a {
+  text-decoration: none; font-weight: 700; font-size: .92rem; color: var(--gold);
+  border: 1px solid var(--line); border-radius: 999px; padding: .5em 1.1em;
+  transition: background .15s ease, color .15s ease;
+}
+.card__links a:hover { background: var(--gold); color: var(--espresso); }
 .tag { display: inline-block; align-self: flex-start; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--espresso); padding: .3em .7em; border-radius: 6px; margin-bottom: 14px; }
 
 .section-head { margin-bottom: 44px; }
