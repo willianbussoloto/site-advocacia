@@ -113,13 +113,20 @@ p { margin: 0 0 1em; }
 .hero {
   position: relative;
   color: var(--cream);
-  background: var(--espresso) url("../img/hero-bg.png") center right / cover no-repeat;
+  background:
+    url("../img/hero-lines.svg") center / cover no-repeat,
+    radial-gradient(ellipse 60% 70% at 85% 15%, rgba(218,172,71,.16), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 0% 100%, rgba(184,138,42,.10), transparent 70%),
+    linear-gradient(160deg, #1b150b 0%, #100b05 55%, #0b0703 100%);
   padding: clamp(64px, 11vw, 132px) 0 clamp(64px, 10vw, 120px);
   overflow: hidden;
 }
 .hero::before {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(16,11,5,.92) 0%, rgba(16,11,5,.7) 55%, rgba(16,11,5,.35) 100%);
+  background-image: radial-gradient(rgba(238,235,227,.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 60%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 60%);
 }
 .hero .wrap { position: relative; }
 .hero__grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: 48px; align-items: center; }
@@ -131,7 +138,6 @@ p { margin: 0 0 1em; }
 .hero__trust svg { width: 18px; height: 18px; color: var(--gold); flex: none; }
 @media (max-width: 900px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .hero::before { background: linear-gradient(180deg, rgba(16,11,5,.88), rgba(16,11,5,.8)); }
 }
 
 /* Cartão do hero (perguntas rápidas) */
@@ -278,10 +284,12 @@ blockquote.motto {
 /* ---------- CTA final ---------- */
 .cta {
   position: relative; overflow: hidden;
-  background: var(--espresso) url("../img/hero-bg.png") center / cover no-repeat;
+  background:
+    url("../img/hero-lines.svg") center / cover no-repeat,
+    radial-gradient(ellipse 55% 80% at 50% 0%, rgba(218,172,71,.18), transparent 70%),
+    linear-gradient(180deg, #1b150b, #0b0703);
   color: var(--cream); text-align: center;
 }
-.cta::before { content: ""; position: absolute; inset: 0; background: rgba(16,11,5,.82); }
 .cta .wrap { position: relative; }
 .cta h2 { max-width: 22ch; margin-inline: auto; }
 .cta .lead { color: rgba(238,235,227,.8); }
