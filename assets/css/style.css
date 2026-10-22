@@ -225,7 +225,8 @@ a.card { text-decoration: none; display: flex; flex-direction: column; }
   background: linear-gradient(160deg, var(--brown-700), var(--espresso));
   display: grid; place-items: center; box-shadow: var(--shadow);
 }
-.about__photo img.photo { width: 100%; height: 100%; object-fit: cover; }
+.about__photo picture { position: absolute; inset: 0; }
+.about__photo img.photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 .about__photo .ph { width: 52%; opacity: .9; }
 .about__photo::after { content: ""; position: absolute; inset: 14px; border: 1px solid var(--line); border-radius: 14px; pointer-events: none; }
 .about__badge {
@@ -419,6 +420,34 @@ blockquote.motto {
 .hero--full .hero__trust { animation-delay: 1.1s; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
+/* Topo com a foto do advogado à direita, fundindo com o fundo escuro */
+.hero--photo { text-align: left; }
+.hero--photo .wrap { align-items: flex-start; position: relative; z-index: 1; }
+.hero--photo h1 { max-width: 15ch; }
+.hero--photo .lead { margin-inline: 0; max-width: 46ch; }
+.hero--photo .hero__ctas, .hero--photo .hero__trust { justify-content: flex-start; }
+.hero__photo {
+  position: absolute; right: 0; bottom: 0; top: 0; width: min(50vw, 760px); z-index: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 22%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 22%);
+  mask-composite: intersect;
+  opacity: 0; animation: photoIn 1.6s var(--ease) .2s forwards;
+}
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 15%; }
+@keyframes photoIn { from { opacity: 0; transform: scale(1.04) translateX(20px); } to { opacity: 1; transform: none; } }
+@media (max-width: 900px) {
+  .hero--photo { flex-direction: column; text-align: center; padding-top: 72px; padding-bottom: 70px; }
+  .hero__photo {
+    position: relative; inset: auto; width: 100%; height: 52svh; max-height: 460px; margin-bottom: -60px;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 40%); mask-image: linear-gradient(to top, transparent 0%, #000 40%);
+  }
+  .hero__photo img { object-position: 62% 10%; }
+  .hero--photo .wrap { align-items: center; }
+  .hero--photo .lead { margin-inline: auto; }
+  .hero--photo .hero__ctas, .hero--photo .hero__trust { justify-content: center; }
+}
+
 /* Palavras do título surgindo de baixo */
 [data-split] .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; }
 [data-split] .w > span { display: inline-block; transform: translateY(105%); transition: transform 1s var(--ease); }
@@ -589,7 +618,7 @@ blockquote.motto {
 @media (prefers-reduced-motion: reduce) {
   .reveal, .about__photo.reveal { opacity: 1; transform: none; transition: none; }
   [data-split] .w > span { transform: none; transition: none; }
-  .hero--full .eyebrow, .hero--full .lead, .hero--full .hero__ctas, .hero--full .hero__trust, .hero__mark, .scroll-cue { opacity: 1; animation: none; }
+  .hero--full .eyebrow, .hero--full .lead, .hero--full .hero__ctas, .hero--full .hero__trust, .hero__mark, .hero__photo, .scroll-cue { opacity: 1; animation: none; }
   .hero-art path { animation: none; stroke-dashoffset: 0; }
   .hero-glow, .marquee__track, .float-whats, .scroll-cue::after { animation: none; }
   .title-xl::after { transform: scaleX(1); transition: none; }

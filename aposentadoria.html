@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
   <!-- Pixels de anúncio (Meta / Google Ads) entram aqui -->
 </head>
 <body class="lp" data-whats-msg="Olá, Dr. Willian! Vim pelo site e quero saber sobre a minha aposentadoria.">
@@ -203,8 +203,10 @@
   <section class="section">
     <div class="wrap about">
       <div class="about__photo reveal">
-        <!-- Troque por uma foto do Dr. Willian: <img class="photo" src="assets/img/willian.jpg" alt="Dr. Willian Bussolotto Bocalon"> -->
-        <img class="ph" src="assets/img/logo.png" alt="Logo Willian Bussolotto Bocalon">
+        <picture>
+          <source srcset="assets/img/willian-tablet.webp" type="image/webp">
+          <img class="photo" src="assets/img/willian-tablet.jpg" alt="Dr. Willian Bussolotto Bocalon" width="900" height="1351" loading="lazy">
+        </picture>
         <div class="about__badge">OAB/RS 138.665</div>
       </div>
       <div class="reveal">
@@ -309,6 +311,6 @@
   <a class="btn btn--whats" href="#" data-whats data-track="mobilebar-aposentadoria">Falar com o advogado no WhatsApp</a>
 </div>
 
-<script src="assets/js/main.js?v=3"></script>
+<script src="assets/js/main.js?v=4"></script>
 </body>
 </html>

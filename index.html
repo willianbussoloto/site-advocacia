@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,7 +60,11 @@
 <main id="topo">
 
   <!-- HERO EM TELA CHEIA -->
-  <section class="hero hero--full">
+  <section class="hero hero--full hero--photo">
+    <picture class="hero__photo">
+      <source srcset="assets/img/willian-pensativo.webp" type="image/webp">
+      <img src="assets/img/willian-pensativo.jpg" alt="Dr. Willian Bussolotto Bocalon, advogado" width="900" height="1351" fetchpriority="high">
+    </picture>
     <div class="hero-glow" aria-hidden="true"></div>
     <svg class="hero-art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
@@ -75,7 +79,6 @@
       <path d="M500 -40 C 760 120, 1100 60, 1300 220 S 1560 420, 1700 360"/>
     </svg>
     <div class="wrap">
-      <img class="hero__mark" src="assets/img/logo.png" alt="Willian Bussolotto Bocalon — Advogado" width="198" height="185">
       <span class="eyebrow">Willian Bussolotto Bocalon · OAB/RS 138.665</span>
       <h1 data-split>Advocacia com <span class="gold">estratégia</span>, humanidade e resultado</h1>
       <p class="lead">Atendimento personalizado e direto com o advogado — com escuta, transparência e cuidado em cada etapa do seu caso.</p>
@@ -214,8 +217,10 @@
   <section class="section band" id="sobre">
     <div class="wrap about">
       <div class="about__photo reveal">
-        <!-- Troque por uma foto do Dr. Willian: <img class="photo" src="assets/img/willian.jpg" alt="Dr. Willian Bussolotto Bocalon"> -->
-        <img class="ph" src="assets/img/logo.png" alt="Logo Willian Bussolotto Bocalon">
+        <picture>
+          <source srcset="assets/img/willian-retrato.webp" type="image/webp">
+          <img class="photo" src="assets/img/willian-retrato.jpg" alt="Dr. Willian Bussolotto Bocalon" width="900" height="1351" loading="lazy">
+        </picture>
         <div class="about__badge">OAB/RS 138.665</div>
       </div>
       <div class="reveal left">
@@ -342,6 +347,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.97 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.26.1 1.68.79 1.97.94.29.14.48.22.55.34.07.12.07.7-.17 1.38Z"/></svg>
 </a>
 
-<script src="assets/js/main.js?v=3"></script>
+<script src="assets/js/main.js?v=4"></script>
 </body>
 </html>
