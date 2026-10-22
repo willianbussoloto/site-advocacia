@@ -541,6 +541,40 @@ blockquote.motto {
 .card--feature:hover::before { opacity: 1; animation: sheen 1.6s linear infinite; }
 @keyframes sheen { to { background-position: 100% 100%; } }
 
+/* ---------- Calculadora de atrasados ---------- */
+.calc {
+  display: grid; grid-template-columns: .9fr 1.1fr; gap: 0; max-width: 980px; margin-inline: auto;
+  border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line);
+}
+.calc__form { background: #fff; padding: 34px; display: grid; gap: 18px; align-content: start; }
+.field { display: grid; gap: 6px; }
+.field span { font-weight: 700; font-size: .92rem; color: var(--brown-900); }
+.field input {
+  font: inherit; font-size: 1.05rem; padding: .8em 1em; border-radius: 10px;
+  border: 1px solid rgba(31,26,18,.18); background: var(--cream-2); color: var(--ink); width: 100%;
+}
+.field input:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+.calc__error { margin: 0; color: #a3341f; font-weight: 700; font-size: .92rem; }
+.calc__result { background: linear-gradient(160deg, var(--brown-800), var(--espresso)); color: var(--cream); padding: 34px; display: flex; flex-direction: column; gap: 22px; }
+.calc__warn {
+  display: flex; gap: 14px; align-items: flex-start;
+  border: 2px solid var(--gold); background: rgba(218,172,71,.12); border-radius: 14px; padding: 18px 20px;
+}
+.calc__warn svg { width: 34px; height: 34px; color: var(--gold); flex: none; }
+.calc__warn p { margin: 0; font-size: 1.12rem; line-height: 1.5; }
+.calc__warn strong { display: block; font-family: var(--serif); font-size: 1.35rem; color: var(--gold-soft); margin-bottom: 4px; }
+.calc__label { font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+.calc__total { display: block; font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.1; margin: 6px 0 14px; }
+.calc__total.pop { animation: pop .6s var(--ease); }
+@keyframes pop { 0% { transform: scale(.92); opacity: .3; } 100% { transform: none; opacity: 1; } }
+.calc__detail { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 6px; color: rgba(238,235,227,.8); font-size: .95rem; }
+.calc__detail b { color: var(--cream); }
+.calc__placeholder { margin: 0; color: rgba(238,235,227,.6); }
+@media (max-width: 820px) {
+  .calc { grid-template-columns: 1fr; }
+  .calc__form, .calc__result { padding: 24px; }
+}
+
 /* Aviso contra golpes */
 .notice {
   display: flex; gap: 14px; align-items: flex-start; margin-top: 32px;

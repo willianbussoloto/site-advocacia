@@ -39,6 +39,63 @@
     });
   });
 
+  // Calculadora de atrasados do auxílio-acidente: 50% do salário mínimo por mês, até 5 anos
+  document.querySelectorAll("form[data-calc='atrasados']").forEach(function (form) {
+    var box = form.parentNode;
+    var out = box.querySelector(".calc__out");
+    var placeholder = box.querySelector(".calc__placeholder");
+    var err = form.querySelector(".calc__error");
+    var brl = function (v) { return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); };
+    var parseBRL = function (s) { return parseFloat(String(s).replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", ".")); };
+    var toISO = function (d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+    var fmt = function (iso) { return iso.split("-").reverse().join("/"); };
+
+    form.hoje.value = toISO(new Date());
+    form.hoje.max = form.acidente.max = toISO(new Date());
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      err.hidden = true;
+      var a = form.acidente.value, h = form.hoje.value, sal = parseBRL(form.salario.value);
+      var fail = function (msg) { err.textContent = msg; err.hidden = false; };
+      if (!a) return fail("Informe a data do acidente.");
+      if (!h) return fail("Informe a data de hoje.");
+      if (!(sal > 0)) return fail("Informe o valor do salário mínimo.");
+      var da = new Date(a + "T12:00:00"), dh = new Date(h + "T12:00:00");
+      if (da >= dh) return fail("A data do acidente precisa ser anterior à data de hoje.");
+
+      var meses = (dh.getFullYear() - da.getFullYear()) * 12 + (dh.getMonth() - da.getMonth());
+      if (dh.getDate() < da.getDate()) meses--;
+      meses = Math.max(meses, 0);
+      var limitado = meses > 60;
+      if (limitado) meses = 60;
+      var mensal = sal * 0.5, total = mensal * meses;
+
+      box.querySelector(".calc__total").textContent = brl(total);
+      box.querySelector("[data-out='meses']").textContent = meses;
+      box.querySelector("[data-out='mensal']").textContent = brl(mensal);
+      box.querySelector("[data-out='limite']").hidden = !limitado;
+      var tot = box.querySelector(".calc__total");
+      tot.classList.remove("pop"); void tot.offsetWidth; tot.classList.add("pop");
+      out.hidden = false;
+      if (placeholder) placeholder.hidden = true;
+      var res = box.querySelector(".calc__result");
+      if (res.getBoundingClientRect().top > window.innerHeight * 0.6) res.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      var wa = box.querySelector("[data-calc-whats]");
+      var msg = "Olá, Dr. Willian! Fiz a simulação de atrasados do auxílio-acidente no site.\n" +
+        "• Data do acidente: " + fmt(a) + "\n" +
+        "• Estimativa: " + brl(total) + " (" + meses + " meses)\n" +
+        "Gostaria que o senhor analisasse o meu caso.";
+      wa.href = whatsUrl(msg);
+      wa.target = "_blank";
+      wa.rel = "noopener";
+      track("calc-resultado");
+    });
+
+    box.querySelector("[data-calc-whats]").addEventListener("click", function () { track("calc-acidente"); });
+  });
+
   // Menu mobile
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");
