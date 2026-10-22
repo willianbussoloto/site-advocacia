@@ -52,8 +52,61 @@
     });
   }
 
+  // Cabeçalho fica sólido depois de rolar
+  var header = document.querySelector(".header");
+  if (header) {
+    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 40); };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  // Títulos com [data-split] entram palavra por palavra
+  document.querySelectorAll("[data-split]").forEach(function (el) {
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement("span");
+            w.className = "w";
+            var inner = document.createElement("span");
+            inner.textContent = part;
+            inner.style.transitionDelay = (0.15 + i++ * 0.07) + "s";
+            w.appendChild(inner);
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          walk(child);
+        }
+      });
+    })(el);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add("in"); }); });
+  });
+
+  // Itens irmãos dentro de [data-stagger] entram em sequência
+  document.querySelectorAll("[data-stagger]").forEach(function (group) {
+    Array.prototype.forEach.call(group.querySelectorAll(":scope > .reveal"), function (el, idx) {
+      el.style.transitionDelay = (idx * 0.09) + "s";
+    });
+  });
+
+  // Painéis de áreas: expande o painel em foco
+  document.querySelectorAll(".areas").forEach(function (wrap) {
+    var panels = wrap.querySelectorAll(".area");
+    function activate(p) { panels.forEach(function (x) { x.classList.toggle("active", x === p); x.setAttribute("aria-expanded", x === p ? "true" : "false"); }); }
+    panels.forEach(function (p) {
+      p.addEventListener("mouseenter", function () { if (window.matchMedia("(hover: hover)").matches) activate(p); });
+      p.addEventListener("focusin", function () { activate(p); });
+      p.addEventListener("click", function () { activate(p); });
+    });
+  });
+
   // Revelar seções ao rolar
-  var items = document.querySelectorAll(".reveal");
+  var items = document.querySelectorAll(".reveal, .steps-line");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
