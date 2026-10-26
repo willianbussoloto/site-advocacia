@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=12">
+  <link rel="stylesheet" href="assets/css/style.css?v=14">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,10 +46,16 @@
     </button>
     <nav class="nav" aria-label="Principal">
       <a href="#sobre">Sobre</a>
-      <a href="#areas">Áreas</a>
-      <a href="aposentadoria.html">Aposentadoria</a>
-      <a href="auxilio-doenca.html">Auxílio-doença</a>
-      <a href="auxilio-acidente.html">Auxílio-acidente</a>
+      <div class="nav__group">
+        <button class="nav__drop" type="button" aria-expanded="false">Previdenciário</button>
+        <div class="nav__menu">
+          <a href="aposentadoria.html">Aposentadoria</a>
+          <a href="auxilio-doenca.html">Auxílio-doença</a>
+          <a href="auxilio-acidente.html">Auxílio-acidente</a>
+        </div>
+      </div>
+      <a href="direito-da-saude.html">Direito da Saúde</a>
+      <a href="direito-rural.html">Direito Rural</a>
       <a href="#contato">Contato</a>
       <a class="btn btn--gold" href="#" data-whats data-track="header-home">Fale comigo</a>
     </nav>
@@ -148,7 +154,9 @@
         <div class="area" tabindex="0" aria-expanded="false">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"/></svg></div>
           <h3>Saúde</h3>
-          <div class="area__body"><p>Demandas contra planos de saúde e o poder público: medicamentos, cirurgias e tratamentos, priorizando a urgência e a vida do cliente.</p></div>
+          <div class="area__body"><p>Demandas contra planos de saúde e o poder público: medicamentos, cirurgias e tratamentos, priorizando a urgência e a vida do cliente.</p>
+            <div class="card__links"><a href="direito-da-saude.html">Tratamento negado? Saiba mais</a></div>
+          </div>
         </div>
         <div class="area" tabindex="0" aria-expanded="false">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0L7 7Zm10 0-3 7a3 3 0 0 0 6 0l-3-7Z"/></svg></div>
@@ -175,6 +183,13 @@
           <h3>Tributário</h3>
           <div class="area__body"><p>Orientação e defesa em questões envolvendo tributos, evitando cobranças indevidas e garantindo segurança jurídica.</p></div>
         </div>
+        <div class="area" tabindex="0" aria-expanded="false">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V4"/><path d="M12 8 8.5 5M12 8l3.5-3M12 12.5 8 9M12 12.5 16 9M12 17l-4-3.5M12 17l4-3.5"/></svg></div>
+          <h3>Rural</h3>
+          <div class="area__body"><p>PROAGRO negado, prorrogação e renegociação de dívidas rurais, com atenção a quem vive do campo.</p>
+            <div class="card__links"><a href="direito-rural.html">PROAGRO e dívidas rurais</a></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -182,8 +197,8 @@
   <!-- FAIXA DE PALAVRAS -->
   <div class="ticker" aria-hidden="true">
     <div class="marquee__track">
-      <span>Aposentadoria</span><span>Auxílio-doença</span><span>Auxílio-acidente</span><span>BPC/LOAS</span><span>Planos de saúde</span><span>Revisão de benefícios</span><span>Pensão por morte</span>
-      <span>Aposentadoria</span><span>Auxílio-doença</span><span>Auxílio-acidente</span><span>BPC/LOAS</span><span>Planos de saúde</span><span>Revisão de benefícios</span><span>Pensão por morte</span>
+      <span>Aposentadoria</span><span>Auxílio-doença</span><span>Auxílio-acidente</span><span>BPC/LOAS</span><span>Planos de saúde</span><span>Revisão de benefícios</span><span>PROAGRO</span><span>Dívidas rurais</span><span>Pensão por morte</span>
+      <span>Aposentadoria</span><span>Auxílio-doença</span><span>Auxílio-acidente</span><span>BPC/LOAS</span><span>Planos de saúde</span><span>Revisão de benefícios</span><span>PROAGRO</span><span>Dívidas rurais</span><span>Pensão por morte</span>
     </div>
   </div>
 
@@ -320,6 +335,8 @@
         <li><a href="aposentadoria.html">Aposentadoria</a></li>
         <li><a href="auxilio-doenca.html">Auxílio-doença</a></li>
         <li><a href="auxilio-acidente.html">Auxílio-acidente</a></li>
+        <li><a href="direito-da-saude.html">Direito da Saúde</a></li>
+        <li><a href="direito-rural.html">Direito Rural</a></li>
       </ul>
     </div>
     <div>
@@ -350,6 +367,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.97 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.26.1 1.68.79 1.97.94.29.14.48.22.55.34.07.12.07.7-.17 1.38Z"/></svg>
 </a>
 
-<script src="assets/js/main.js?v=12"></script>
+<script src="assets/js/main.js?v=14"></script>
 </body>
 </html>

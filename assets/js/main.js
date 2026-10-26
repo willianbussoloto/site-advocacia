@@ -103,6 +103,18 @@
     box.querySelector("[data-calc-whats]").addEventListener("click", function () { track("calc-acidente"); });
   });
 
+  // Submenu do menu principal (toque abre/fecha; no computador também abre ao passar o mouse)
+  document.querySelectorAll(".nav__drop").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var g = b.closest(".nav__group");
+      var open = g.classList.toggle("open");
+      b.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+  document.addEventListener("click", function (ev) {
+    document.querySelectorAll(".nav__group.open").forEach(function (g) { if (!g.contains(ev.target)) { g.classList.remove("open"); g.querySelector(".nav__drop").setAttribute("aria-expanded", "false"); } });
+  });
+
   // Menu mobile
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");
