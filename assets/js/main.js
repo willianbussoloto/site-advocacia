@@ -13,6 +13,13 @@
     try { if (window.dataLayer) window.dataLayer.push({ event: "whatsapp_click", label: label }); } catch (e) {}
   }
 
+  // Avanço de etapa da pré-análise: só o número da etapa, nunca as respostas
+  function trackStep(label, step) {
+    try { if (window.fbq) window.fbq("trackCustom", "PreAnaliseEtapa", { origem: label, etapa: step }); } catch (e) {}
+    try { if (window.gtag) window.gtag("event", "pre_analise_etapa", { event_label: label, value: step }); } catch (e) {}
+  }
+  window.WB = { whatsUrl: whatsUrl, track: track, trackStep: trackStep };
+
   // Todos os links com data-whats viram links de WhatsApp com mensagem pronta
   var pageMsg = document.body.getAttribute("data-whats-msg") || "Olá, Dr. Willian! Vim pelo site e gostaria de uma orientação.";
   document.querySelectorAll("[data-whats]").forEach(function (a) {

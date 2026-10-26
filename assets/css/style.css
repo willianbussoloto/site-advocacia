@@ -165,6 +165,88 @@ p { margin: 0 0 1em; }
 .chips input:focus-visible + span { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
 .qcard small { display: block; margin-top: 12px; color: rgba(242, 242, 240,.6); font-size: .8rem; text-align: center; }
 
+/* ---------- Página de texto legal ---------- */
+.legal__wrap { max-width: 760px; }
+.legal h1 { margin-bottom: .4em; }
+.legal h2 { font-family: var(--sans); font-size: 1.15rem; margin: 2em 0 .6em; }
+.legal p, .legal li { color: #2a2a2e; }
+.legal__date { font-size: .9rem; color: var(--muted); }
+.legal .list-gold { margin-bottom: 1em; }
+.cta__alt { margin: 14px 0 0; }
+.cta__alt a { color: rgba(242, 242, 240,.8); font-size: .95rem; }
+.cta__alt a:hover { color: var(--gold); }
+
+/* ---------- Pré-análise em etapas ---------- */
+.lp .hero__grid { align-items: start; }
+.wiz [hidden] { display: none !important; }
+.mobile-bar { transition: transform .3s ease; }
+.mobile-bar.is-hidden { transform: translateY(110%); }
+.wiz { scroll-margin-top: 80px; font-size: 1.02rem; }
+.wiz-head h2 { font-size: 1.3rem; margin: 0 0 .15em; }
+.wiz-sub { color: rgba(242, 242, 240,.72); font-size: .95rem; margin: 0 0 14px; }
+.wiz-progress { height: 6px; border-radius: 99px; background: rgba(242, 242, 240,.12); overflow: hidden; }
+.wiz-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-soft)); border-radius: inherit; transition: width .4s var(--ease, ease); }
+.wiz-count { margin: 6px 0 16px; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+.wiz-q { font-family: var(--sans); font-size: 1.12rem; font-weight: 700; line-height: 1.4; margin: 0 0 14px; outline: none; }
+.wiz-opts { display: grid; gap: 8px; }
+.wiz-opts--2 { grid-template-columns: 1fr 1fr; }
+.wiz-opt {
+  font: inherit; font-size: 1rem; text-align: left; cursor: pointer; color: var(--cream);
+  min-height: 52px; padding: .75em 1em; border-radius: 12px;
+  background: rgba(242, 242, 240,.05); border: 1px solid rgba(242, 242, 240,.2);
+  transition: background .15s ease, border-color .15s ease, transform .1s ease;
+}
+.wiz-opt:hover { border-color: var(--gold); }
+.wiz-opt:active { transform: scale(.98); }
+.wiz-opt[aria-checked="true"] { background: var(--gold); border-color: var(--gold); color: var(--espresso); font-weight: 700; }
+.wiz-opt:focus-visible, .wiz-input:focus-visible, .wiz-back:focus-visible, .wiz-consent input:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+.wiz-extras { display: grid; gap: 16px; margin-top: 18px; padding: 16px; border-radius: 12px; border: 1px dashed rgba(218,172,71,.45); background: rgba(218,172,71,.05); }
+.wiz-extra { display: grid; gap: 8px; }
+.wiz-extras .wiz-opts { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+.wiz-extras .wiz-opt { min-height: 46px; text-align: center; }
+.wiz-sublabel { font-weight: 700; font-size: .95rem; margin: 0; }
+.wiz-hint { color: rgba(242, 242, 240,.6); font-size: .82rem; }
+.wiz-input {
+  font: inherit; font-size: 1.05rem; width: 100%; min-height: 50px; padding: .6em .9em; border-radius: 10px;
+  background: rgba(242, 242, 240,.06); color: var(--cream); border: 1px solid rgba(242, 242, 240,.25);
+}
+.wiz-input::placeholder { color: rgba(242, 242, 240,.45); }
+select.wiz-input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 18px) 55%, calc(100% - 12px) 55%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 2em; }
+select.wiz-input option { color: #111; }
+.wiz-num { display: flex; align-items: center; gap: 10px; }
+.wiz-input--num { max-width: 120px; }
+.wiz-date { display: grid; grid-template-columns: .8fr 1.4fr 1fr; gap: 8px; }
+.wiz-city { display: grid; grid-template-columns: 1fr 96px; gap: 6px 8px; margin-bottom: 16px; }
+.wiz-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px; }
+.wiz-next { min-width: 140px; }
+.wiz-next:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.wiz-back { font: inherit; background: none; border: 0; color: rgba(242, 242, 240,.75); cursor: pointer; padding: 10px 4px; font-size: .95rem; }
+.wiz-back:hover { color: var(--gold); }
+.wiz-skip { display: block; text-align: center; margin-top: 16px; font-size: .88rem; color: rgba(242, 242, 240,.7); }
+.wiz-skip:hover { color: var(--gold); }
+.wiz-review { display: grid; grid-template-columns: minmax(0, 1fr); margin: 0 0 6px; padding: 6px 14px; border-radius: 12px; background: rgba(242, 242, 240,.05); font-size: .92rem; }
+.wiz-review dt { color: rgba(242, 242, 240,.62); font-size: .8rem; padding-top: 8px; }
+.wiz-review dd { margin: 0; font-weight: 700; overflow-wrap: break-word; padding-bottom: 8px; border-bottom: 1px solid rgba(242, 242, 240,.08); }
+.wiz-review dd:last-child { border-bottom: 0; }
+.wiz-review .sub { padding-left: 14px; }
+.wiz-review dd.sub { font-weight: 400; }
+.wiz-edit { padding-left: 0; text-decoration: underline; }
+.wiz-disclaimer { font-size: .9rem; margin: 12px 0; padding: 12px 14px; border-radius: 10px; border-left: 3px solid var(--gold); background: rgba(218,172,71,.08); }
+.wiz-privacy { display: grid; gap: 8px; margin-bottom: 14px; }
+.wiz-consent { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-size: .95rem; line-height: 1.45; }
+.wiz-consent input { width: 24px; height: 24px; flex: none; margin-top: 1px; accent-color: var(--gold); }
+.wiz-privacy-text { font-size: .8rem; color: rgba(242, 242, 240,.62); margin: 0; }
+.wiz-privacy-text a { color: var(--gold); }
+.wiz-send { text-align: center; }
+.wiz-send.is-disabled { filter: grayscale(.6); opacity: .55; box-shadow: none; }
+.wiz-need { color: var(--gold-soft); font-size: .9rem; text-align: center; margin: 8px 0 0; }
+@media (max-width: 520px) {
+  .qcard.wiz { padding: 22px 18px; border-radius: 16px; }
+  .wiz-opts--2 { grid-template-columns: 1fr; }
+  .wiz-date { grid-template-columns: 1fr 1fr; }
+  .wiz-date select:last-child { grid-column: 1 / -1; }
+}
+
 /* ---------- Cards / grids ---------- */
 .grid { display: grid; gap: 22px; }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
