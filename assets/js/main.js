@@ -1,6 +1,6 @@
 // Willian Bocalon Advocacia — comportamento compartilhado
 (function () {
-  var PHONE = "5554996767153";
+  var PHONE = "5554920039612";
 
   function whatsUrl(msg) {
     return "https://wa.me/" + PHONE + (msg ? "?text=" + encodeURIComponent(msg) : "");
