@@ -1,84 +1,82 @@
-// Formulários da página Direito Tributário (respostas vão pelo WhatsApp)
+// Formulários da página Direito Tributário para empresas (respostas vão pelo WhatsApp)
 (function () {
   if (!window.WBWizard) return;
-  var SN = WBWizard.SIM_NAO;
-  function qual(id, rotulo, exemplo) { return { id: id, rotulo: rotulo, pergunta: "Qual?", tipo: "texto", exemplo: exemplo }; }
   var comum = {
     subtitulo: "Gratuito · leva cerca de 3 minutos",
-    aviso: "o preenchimento não garante isenção, restituição ou o cancelamento de cobranças. Cada situação depende da análise dos documentos pelo advogado.",
-    consentimento: "Autorizo o envio destas informações ao escritório Willian Bocalon Advocacia pelo WhatsApp, para a análise do meu caso.",
+    aviso: "o preenchimento não garante descontos, parcelamento ou o cancelamento de cobranças. Cada situação depende da análise dos documentos da empresa pelo advogado.",
+    consentimento: "Autorizo o envio destas informações ao escritório Willian Bocalon Advocacia pelo WhatsApp, para a análise do caso da empresa.",
     docsMsg: "documentos",
-    msgDireta: "Olá, Dr. Willian! Vim pela página de Direito Tributário do site e gostaria de conversar sobre o meu caso."
+    msgDireta: "Olá, Dr. Willian! Vim pela página de Direito Tributário do site e gostaria de conversar sobre as dívidas da minha empresa."
   };
-  var dados = { id: "dados", tipo: "dados", pergunta: "Para finalizar, seus dados:", nome: "obrigatorio", telefone: true };
-  function docs(opcoes) {
-    return { id: "documentos", rotulo: "Documentos que tenho para enviar", pergunta: "Quais documentos você tem para mandar na conversa?", tipo: "multi",
-      dica: "Toque em todos que tiver. Você manda as fotos ou PDF no WhatsApp, logo depois.", opcoes: opcoes.concat(["Ainda não tenho documentos"]), exclusivo: "Ainda não tenho documentos" };
-  }
   function cfg(o) { var c = {}; Object.keys(comum).forEach(function (k) { c[k] = comum[k]; }); Object.keys(o).forEach(function (k) { c[k] = o[k]; }); return c; }
 
+  // Etapas reaproveitadas pelos três formulários
+  var regime = { id: "regime", rotulo: "Regime de tributação", pergunta: "Qual o regime de tributação da empresa?", tipo: "escolha", colunas: 2, opcoes: ["Simples Nacional", "MEI", "Lucro Presumido", "Lucro Real", "Não sei"] };
+  var atividade = { id: "atividade", rotulo: "Atividade da empresa", pergunta: "Qual é a atividade da empresa?", tipo: "texto", exemplo: "Ex.: comércio de materiais de construção, transporte, indústria de móveis" };
+  var orgao = { id: "orgao", rotulo: "Dívidas com", pergunta: "Com quem são as dívidas?", tipo: "multi", dica: "Pode marcar mais de um.",
+    opcoes: ["Receita Federal ou PGFN (União)", "Estado (ICMS)", "Prefeitura (ISS e taxas)", "Não sei"], exclusivo: "Não sei" };
+  var valor = { id: "valor", rotulo: "Valor aproximado das dívidas", pergunta: "Qual o valor aproximado das dívidas de impostos?", tipo: "escolha",
+    opcoes: ["Até R$ 50 mil", "De R$ 50 mil a R$ 200 mil", "De R$ 200 mil a R$ 1 milhão", "Acima de R$ 1 milhão", "Não sei"] };
+  var parcelamento = { id: "parcelamento", rotulo: "Parcelamento", pergunta: "A empresa já parcelou essas dívidas?", tipo: "escolha", opcoes: ["Sim, estou pagando", "Sim, mas foi cancelado", "Não"] };
+  var funcionando = { id: "funcionando", rotulo: "Situação da empresa", pergunta: "Como está a empresa hoje?", tipo: "escolha", opcoes: ["Funcionando normalmente", "Funcionando, mas com dificuldade financeira", "Parada ou fechada"] };
+  var empresa = { id: "empresa", rotulo: "Empresa", pergunta: "Qual o nome da empresa?", tipo: "texto", opcional: true, exemplo: "Razão social ou nome fantasia", max: 100 };
+  var dados = { id: "dados", tipo: "dados", pergunta: "Para finalizar, seus dados:", nome: "obrigatorio", telefone: true, rotuloCidade: "Cidade da empresa" };
+  function relato(exemplo) { return { id: "relato", rotulo: "Situação", pergunta: "Se quiser, explique a situação da empresa.", tipo: "textarea", opcional: true, exemplo: exemplo }; }
+  function docs(opcoes) {
+    return { id: "documentos", rotulo: "Documentos que tenho para enviar", pergunta: "Quais documentos você tem para mandar na conversa?", tipo: "multi",
+      dica: "Toque em todos que tiver. Você manda as fotos ou PDF no WhatsApp, logo depois. Se a empresa tiver contador, ele pode ajudar a separar.", opcoes: opcoes.concat(["Ainda não tenho documentos"]), exclusivo: "Ainda não tenho documentos" };
+  }
+
   var configs = {
-    ir: cfg({
-      id: "trib-ir", track: "trib-ir-doenca-grave", titulo: "Isenção de Imposto de Renda por doença grave",
-      botao: "Solicitar análise da minha isenção",
-      intro: "Olá, Dr. Willian! Gostaria de uma análise sobre a isenção de Imposto de Renda por doença grave.",
-      origemTexto: "Preenchi o formulário de isenção de IR por doença grave na página de Direito Tributário do site.",
-      docsAviso: "depois de enviar a mensagem, mande na mesma conversa fotos ou PDF do laudo médico, dos exames e do extrato ou informe de rendimentos do benefício, se tiver.",
-      ordem: ["dados", "beneficio", "doenca", "diagnostico", "laudo", "desconto", "pediu", "relato", "documentos"],
+    negociar: cfg({
+      id: "trib-negociar", track: "trib-negociar", titulo: "Negociar as dívidas da empresa",
+      botao: "Solicitar análise das dívidas",
+      intro: "Olá, Dr. Willian! Minha empresa tem dívidas de impostos e gostaria de uma análise para negociar.",
+      origemTexto: "Preenchi o formulário de negociação de dívidas na página de Direito Tributário do site.",
+      docsAviso: "depois de enviar a mensagem, mande na mesma conversa o relatório de dívidas da empresa (e-CAC, Regularize/PGFN ou Simples Nacional), as cartas de cobrança e os parcelamentos anteriores, se tiver.",
+      ordem: ["dados", "empresa", "regime", "atividade", "orgao", "valor", "tempo", "parcelamento", "funcionando", "relato", "documentos"],
       steps: [
-        { id: "beneficio", rotulo: "Renda que recebe", pergunta: "Que tipo de renda você recebe?", tipo: "escolha",
-          opcoes: ["Aposentadoria do INSS", "Aposentadoria de servidor público", "Pensão por morte", "Reforma ou reserva militar", "Previdência privada", "Ainda estou trabalhando"] },
-        { id: "doenca", rotulo: "Doença", pergunta: "Qual é a doença?", tipo: "escolha", colunas: 2,
-          opcoes: ["Câncer", "Cardiopatia grave", "Doença de Parkinson", "Cegueira (mesmo de um olho)", "Esclerose múltipla", "Doença grave nos rins ou no fígado", "Alienação mental", "Paralisia irreversível", "HIV/AIDS", "Outra doença"], abreCom: "Outra doença",
-          extras: [qual("doenca_outra", "Qual doença", "Ex.: espondilite anquilosante, tuberculose")] },
-        { id: "diagnostico", rotulo: "Diagnóstico em", pergunta: "Quando você recebeu o diagnóstico?", tipo: "mesano", desde: 1990, dica: "Mês e ano aproximados. A isenção vale mesmo se a doença estiver controlada ou já tiver sido tratada." },
-        { id: "laudo", rotulo: "Tem laudo ou exames", pergunta: "Você tem laudo médico ou exames que comprovem a doença?", tipo: "escolha", opcoes: ["Sim", "Não", "Não sei"] },
-        { id: "desconto", rotulo: "Ainda desconta IR", pergunta: "Ainda é descontado Imposto de Renda da sua aposentadoria ou pensão?", tipo: "escolha", opcoes: ["Sim", "Não, já tenho a isenção", "Não sei"] },
-        { id: "pediu", rotulo: "Pediu a isenção", pergunta: "Você já pediu a isenção ao INSS ou ao órgão que paga o benefício?", tipo: "escolha", opcoes: ["Sim, mas foi negada", "Sim, estou aguardando resposta", "Não pedi"] },
-        { id: "relato", rotulo: "Situação", pergunta: "Se quiser, explique a sua situação.", tipo: "textarea", opcional: true, exemplo: "Ex.: me aposentei em 2019, tive câncer de mama em 2021 e o IR continua sendo descontado..." },
-        docs(["Laudo médico", "Exames", "Extrato ou informe de rendimentos do benefício", "Declarações de Imposto de Renda", "Outros documentos"]),
-        dados
+        regime, atividade, orgao, valor,
+        { id: "tempo", rotulo: "Desde quando há dívidas", pergunta: "Há quanto tempo a empresa tem essas dívidas?", tipo: "escolha", opcoes: ["Menos de 1 ano", "De 1 a 5 anos", "Mais de 5 anos", "Não sei"] },
+        parcelamento, funcionando,
+        relato("Ex.: deixamos de pagar o Simples em 2023 e agora a dívida passou de R$ 150 mil..."),
+        docs(["Relatório de dívidas (e-CAC, PGFN ou Simples)", "Cartas ou notificações de cobrança", "Parcelamentos anteriores", "Outros documentos"]),
+        empresa, dados
       ]
     }),
-    dividas: cfg({
-      id: "trib-dividas", track: "trib-dividas", titulo: "Dívidas de impostos e execução fiscal",
-      botao: "Solicitar análise da minha dívida",
-      intro: "Olá, Dr. Willian! Estou com uma dívida de impostos e gostaria de uma análise do meu caso.",
-      origemTexto: "Preenchi o formulário de dívidas de impostos na página de Direito Tributário do site.",
-      docsAviso: "depois de enviar a mensagem, mande na mesma conversa fotos ou PDF das cartas de cobrança, da certidão de dívida ativa e do processo, se tiver.",
-      ordem: ["dados", "titular", "orgao", "tributo", "situacao", "valor", "tempo", "parcelamento", "relato", "documentos"],
+    execucao: cfg({
+      id: "trib-execucao", track: "trib-execucao", titulo: "Execução fiscal e bloqueios",
+      botao: "Solicitar análise da execução",
+      intro: "Olá, Dr. Willian! Minha empresa está sendo cobrada na Justiça por dívidas de impostos e gostaria de uma análise.",
+      origemTexto: "Preenchi o formulário de execução fiscal na página de Direito Tributário do site.",
+      docsAviso: "depois de enviar a mensagem, mande na mesma conversa a citação ou o número do processo, os comprovantes de bloqueio e a certidão de dívida ativa, se tiver.",
+      ordem: ["dados", "empresa", "situacao", "quando", "orgao", "valor", "regime", "parcelamento", "funcionando", "relato", "documentos"],
       steps: [
-        { id: "titular", rotulo: "Dívida em nome de", pergunta: "A dívida está em nome de quem?", tipo: "escolha", opcoes: ["Pessoa física (no meu nome)", "Produtor rural", "Empresa"] },
-        { id: "orgao", rotulo: "Quem está cobrando", pergunta: "Quem está cobrando?", tipo: "multi", dica: "Pode marcar mais de um.",
-          opcoes: ["Receita Federal ou União", "Estado", "Município (prefeitura)", "Não sei"], exclusivo: "Não sei" },
-        { id: "tributo", rotulo: "Imposto cobrado", pergunta: "Qual imposto está sendo cobrado?", tipo: "texto", opcional: true, exemplo: "Ex.: Imposto de Renda, IPVA, IPTU, ICMS, Simples Nacional" },
-        { id: "situacao", rotulo: "Situação da cobrança", pergunta: "Em que situação está a cobrança?", tipo: "multi", dica: "Marque tudo o que já aconteceu.",
-          opcoes: ["Recebi carta ou notificação de cobrança", "Meu nome está em dívida ativa", "Protesto em cartório", "Processo de execução fiscal na Justiça", "Conta bancária ou bens bloqueados", "Não consigo tirar certidão negativa"] },
-        { id: "valor", rotulo: "Valor aproximado", pergunta: "Qual o valor aproximado da dívida?", tipo: "escolha", opcoes: ["Até R$ 20 mil", "De R$ 20 mil a R$ 100 mil", "De R$ 100 mil a R$ 500 mil", "Acima de R$ 500 mil", "Não sei"] },
-        { id: "tempo", rotulo: "Idade da dívida", pergunta: "Há quanto tempo existe essa dívida?", tipo: "escolha", opcoes: ["Menos de 5 anos", "Mais de 5 anos", "Não sei"] },
-        { id: "parcelamento", rotulo: "Parcelamento", pergunta: "Você já parcelou essa dívida?", tipo: "escolha", opcoes: ["Sim, estou pagando", "Sim, mas o parcelamento foi cancelado", "Não"] },
-        { id: "relato", rotulo: "Situação", pergunta: "Se quiser, explique a sua situação.", tipo: "textarea", opcional: true, exemplo: "Ex.: a prefeitura está cobrando IPTU de um terreno que vendi em 2015..." },
-        docs(["Carta ou notificação de cobrança", "Certidão de dívida ativa", "Processo ou citação da execução", "Comprovante de bloqueio", "Outros documentos"]),
-        dados
+        { id: "situacao", rotulo: "O que aconteceu", pergunta: "O que já aconteceu?", tipo: "multi", dica: "Marque tudo o que já aconteceu.",
+          opcoes: ["A empresa foi citada em execução fiscal", "Contas da empresa bloqueadas", "Bens, veículos ou faturamento penhorados", "Cobrança passada para o CPF dos sócios", "Protesto em cartório"] },
+        { id: "quando", rotulo: "Citação ou bloqueio em", pergunta: "Quando a empresa recebeu a citação ou teve o bloqueio?", tipo: "mesano", desde: 2010, opcional: true, dica: "Mês e ano aproximados. Os prazos de defesa são curtos." },
+        orgao, valor, regime, parcelamento, funcionando,
+        relato("Ex.: bloquearam R$ 40 mil da conta da empresa e não conseguimos pagar os funcionários..."),
+        docs(["Citação ou processo", "Comprovante de bloqueio ou penhora", "Certidão de dívida ativa", "Outros documentos"]),
+        empresa, dados
       ]
     }),
-    recuperar: cfg({
-      id: "trib-recuperar", track: "trib-recuperar", titulo: "Recuperação de impostos pagos a mais",
-      botao: "Solicitar análise dos meus impostos",
-      intro: "Olá, Dr. Willian! Gostaria de uma análise para saber se paguei impostos a mais ou indevidamente.",
-      origemTexto: "Preenchi o formulário de recuperação de impostos na página de Direito Tributário do site.",
-      docsAviso: "depois de enviar a mensagem, mande na mesma conversa as guias de pagamento e as declarações que tiver; se tiver contador, ele também pode enviar.",
-      ordem: ["dados", "perfil", "atividade", "tributos", "contador", "relato", "documentos"],
+    simples: cfg({
+      id: "trib-simples", track: "trib-simples", titulo: "Exclusão do Simples ou certidão negativa",
+      botao: "Solicitar análise da regularização",
+      intro: "Olá, Dr. Willian! Minha empresa precisa se regularizar (Simples Nacional ou certidão negativa) e gostaria de uma análise.",
+      origemTexto: "Preenchi o formulário de Simples Nacional e certidão negativa na página de Direito Tributário do site.",
+      docsAviso: "depois de enviar a mensagem, mande na mesma conversa o termo de exclusão do Simples, o relatório de pendências da empresa ou a certidão positiva, se tiver.",
+      ordem: ["dados", "empresa", "problema", "regime", "atividade", "orgao", "valor", "parcelamento", "relato", "documentos"],
       steps: [
-        { id: "perfil", rotulo: "Perfil", pergunta: "Para quem é a análise?", tipo: "escolha", opcoes: ["Empresa", "Produtor rural", "Pessoa física"], abreCom: "Empresa",
-          extras: [{ id: "regime", rotulo: "Regime de tributação", pergunta: "Qual o regime de tributação da empresa?", tipo: "escolha", opcoes: ["Simples Nacional", "Lucro Presumido", "Lucro Real", "Não sei"] }] },
-        { id: "atividade", rotulo: "Atividade principal", pergunta: "Qual é a atividade principal?", tipo: "texto", exemplo: "Ex.: comércio de peças, produção de leite, transporte" },
-        { id: "tributos", rotulo: "Impostos a revisar", pergunta: "Quais impostos você quer revisar?", tipo: "multi", dica: "Se não souber, marque a última opção.",
-          opcoes: ["Contribuição ao INSS ou Funrural", "PIS e Cofins", "ICMS", "Imposto de Renda", "ISS", "IPTU ou ITR", "Não sei, quero uma revisão geral"], exclusivo: "Não sei, quero uma revisão geral" },
-        { id: "contador", rotulo: "Tem contador", pergunta: "Você tem contador?", tipo: "escolha", opcoes: SN },
-        { id: "relato", rotulo: "Situação", pergunta: "Se quiser, explique o que você desconfia que está pagando a mais.", tipo: "textarea", opcional: true, exemplo: "Ex.: pago Funrural sobre toda a venda do leite e não sei se está certo..." },
-        docs(["Guias de pagamento", "Notas fiscais", "Declarações entregues à Receita", "Outros documentos"]),
-        dados
+        { id: "problema", rotulo: "Problema", pergunta: "Qual é o problema da empresa?", tipo: "escolha",
+          opcoes: ["Recebi termo de exclusão do Simples Nacional", "Já fui excluído do Simples Nacional", "Não consigo tirar certidão negativa (CND)"],
+          abreCom: ["Recebi termo de exclusão do Simples Nacional", "Já fui excluído do Simples Nacional"],
+          extras: [{ id: "termo_quando", rotulo: "Termo de exclusão recebido em", pergunta: "Quando a empresa recebeu o termo de exclusão?", tipo: "mesano", desde: 2018, opcional: true }] },
+        regime, atividade, orgao, valor, parcelamento,
+        relato("Ex.: precisamos da certidão negativa para uma licitação no mês que vem..."),
+        docs(["Termo de exclusão do Simples", "Relatório de pendências (e-CAC)", "Certidão positiva", "Outros documentos"]),
+        empresa, dados
       ]
     })
   };
