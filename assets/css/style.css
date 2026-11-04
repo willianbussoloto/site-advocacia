@@ -93,6 +93,12 @@ p { margin: 0 0 1em; }
 .nav a { color: var(--cream); text-decoration: none; font-size: .95rem; opacity: .85; }
 .nav a:hover { opacity: 1; color: var(--gold); }
 .nav .btn { padding: .7em 1.2em; font-size: .9rem; opacity: 1; color: var(--espresso); }
+.nav a, .nav__drop { white-space: nowrap; }
+@media (min-width: 901px) and (max-width: 1180px) {
+  .nav { gap: 16px; }
+  .nav a, .nav .nav__drop { font-size: .86rem; }
+  .brand strong { font-size: .92rem; }
+}
 .nav-toggle { display: none; background: none; border: 0; color: var(--cream); padding: 8px; cursor: pointer; }
 .nav-toggle svg { width: 28px; height: 28px; }
 
