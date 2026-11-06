@@ -7,8 +7,16 @@
   }
 
   // Dispara conversão nos pixels que estiverem instalados (Meta / Google Ads / GA4)
+  // Formulário enviado = Lead; formulário aberto e simulação = eventos próprios; demais cliques no WhatsApp = Contact
   function track(label) {
-    try { if (window.fbq) window.fbq("track", "Contact", { content_name: label }); } catch (e) {}
+    try {
+      if (window.fbq) {
+        if (/-enviado$/.test(label)) window.fbq("track", "Lead", { content_name: label });
+        else if (/-aberto$/.test(label)) window.fbq("trackCustom", "FormularioAberto", { content_name: label });
+        else if (label === "calc-resultado") window.fbq("trackCustom", "SimulacaoAtrasados");
+        else window.fbq("track", "Contact", { content_name: label });
+      }
+    } catch (e) {}
     try { if (window.gtag) window.gtag("event", "whatsapp_click", { event_label: label }); } catch (e) {}
     try { if (window.dataLayer) window.dataLayer.push({ event: "whatsapp_click", label: label }); } catch (e) {}
   }
