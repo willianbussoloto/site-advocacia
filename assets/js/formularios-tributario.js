@@ -2,7 +2,7 @@
 (function () {
   if (!window.WBWizard) return;
   var comum = {
-    subtitulo: "Gratuito · leva cerca de 3 minutos",
+    subtitulo: "Gratuito · 2 toques e você fala com o advogado",
     aviso: "o preenchimento não garante descontos, parcelamento ou o cancelamento de cobranças. Cada situação depende da análise dos documentos da empresa pelo advogado.",
     consentimento: "Autorizo o envio destas informações ao escritório Willian Bocalon Advocacia pelo WhatsApp, para a análise do caso da empresa.",
     docsMsg: "documentos",
@@ -33,15 +33,9 @@
       botao: "Solicitar análise das dívidas",
       intro: "Olá, Dr. Willian! Minha empresa tem dívidas de impostos e gostaria de uma análise para negociar.",
       origemTexto: "Preenchi o formulário de negociação de dívidas na página de Direito Tributário do site.",
-      docsAviso: "depois de enviar a mensagem, mande na mesma conversa o relatório de dívidas da empresa (e-CAC, Regularize/PGFN ou Simples Nacional), as cartas de cobrança e os parcelamentos anteriores, se tiver.",
-      ordem: ["dados", "empresa", "regime", "atividade", "orgao", "valor", "tempo", "parcelamento", "funcionando", "relato", "documentos"],
+      ordem: ["orgao", "valor"],
       steps: [
-        regime, atividade, orgao, valor,
-        { id: "tempo", rotulo: "Desde quando há dívidas", pergunta: "Há quanto tempo a empresa tem essas dívidas?", tipo: "escolha", opcoes: ["Menos de 1 ano", "De 1 a 5 anos", "Mais de 5 anos", "Não sei"] },
-        parcelamento, funcionando,
-        relato("Ex.: deixamos de pagar o Simples em 2023 e agora a dívida passou de R$ 150 mil..."),
-        docs(["Relatório de dívidas (e-CAC, PGFN ou Simples)", "Cartas ou notificações de cobrança", "Parcelamentos anteriores", "Outros documentos"]),
-        empresa, dados
+        orgao, valor
       ]
     }),
     execucao: cfg({
@@ -49,16 +43,11 @@
       botao: "Solicitar análise da execução",
       intro: "Olá, Dr. Willian! Minha empresa está sendo cobrada na Justiça por dívidas de impostos e gostaria de uma análise.",
       origemTexto: "Preenchi o formulário de execução fiscal na página de Direito Tributário do site.",
-      docsAviso: "depois de enviar a mensagem, mande na mesma conversa a citação ou o número do processo, os comprovantes de bloqueio e a certidão de dívida ativa, se tiver.",
-      ordem: ["dados", "empresa", "situacao", "quando", "orgao", "valor", "regime", "parcelamento", "funcionando", "relato", "documentos"],
+      ordem: ["situacao", "valor"],
       steps: [
-        { id: "situacao", rotulo: "O que aconteceu", pergunta: "O que já aconteceu?", tipo: "multi", dica: "Marque tudo o que já aconteceu.",
-          opcoes: ["A empresa foi citada em execução fiscal", "Contas da empresa bloqueadas", "Bens, veículos ou faturamento penhorados", "Cobrança passada para o CPF dos sócios", "Protesto em cartório"] },
-        { id: "quando", rotulo: "Citação ou bloqueio em", pergunta: "Quando a empresa recebeu a citação ou teve o bloqueio?", tipo: "mesano", desde: 2010, opcional: true, dica: "Mês e ano aproximados. Os prazos de defesa são curtos." },
-        orgao, valor, regime, parcelamento, funcionando,
-        relato("Ex.: bloquearam R$ 40 mil da conta da empresa e não conseguimos pagar os funcionários..."),
-        docs(["Citação ou processo", "Comprovante de bloqueio ou penhora", "Certidão de dívida ativa", "Outros documentos"]),
-        empresa, dados
+        { id: "situacao", rotulo: "O que aconteceu", pergunta: "O que já aconteceu?", tipo: "multi", dica: "Pode marcar mais de um.",
+          opcoes: ["Fui citado em execução fiscal", "Contas bloqueadas", "Bens ou faturamento penhorados", "Cobrança no CPF dos sócios", "Protesto em cartório"] },
+        valor
       ]
     }),
     simples: cfg({
@@ -66,17 +55,11 @@
       botao: "Solicitar análise da regularização",
       intro: "Olá, Dr. Willian! Minha empresa precisa se regularizar (Simples Nacional ou certidão negativa) e gostaria de uma análise.",
       origemTexto: "Preenchi o formulário de Simples Nacional e certidão negativa na página de Direito Tributário do site.",
-      docsAviso: "depois de enviar a mensagem, mande na mesma conversa o termo de exclusão do Simples, o relatório de pendências da empresa ou a certidão positiva, se tiver.",
-      ordem: ["dados", "empresa", "problema", "regime", "atividade", "orgao", "valor", "parcelamento", "relato", "documentos"],
+      ordem: ["problema", "valor"],
       steps: [
         { id: "problema", rotulo: "Problema", pergunta: "Qual é o problema da empresa?", tipo: "escolha",
-          opcoes: ["Recebi termo de exclusão do Simples Nacional", "Já fui excluído do Simples Nacional", "Não consigo tirar certidão negativa (CND)"],
-          abreCom: ["Recebi termo de exclusão do Simples Nacional", "Já fui excluído do Simples Nacional"],
-          extras: [{ id: "termo_quando", rotulo: "Termo de exclusão recebido em", pergunta: "Quando a empresa recebeu o termo de exclusão?", tipo: "mesano", desde: 2018, opcional: true }] },
-        regime, atividade, orgao, valor, parcelamento,
-        relato("Ex.: precisamos da certidão negativa para uma licitação no mês que vem..."),
-        docs(["Termo de exclusão do Simples", "Relatório de pendências (e-CAC)", "Certidão positiva", "Outros documentos"]),
-        empresa, dados
+          opcoes: ["Recebi termo de exclusão do Simples", "Já fui excluído do Simples", "Não consigo certidão negativa"] },
+        valor
       ]
     })
   };
