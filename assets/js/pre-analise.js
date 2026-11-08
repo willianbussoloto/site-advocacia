@@ -5,6 +5,34 @@
   var SN = WBWizard.SIM_NAO;
   var origem = root.getAttribute("data-origem") || "site";
 
+  // Página do auxílio-acidente: perguntas curtas, só sobre o acidente (quem vem do anúncio desiste no formulário longo)
+  if (root.getAttribute("data-tipo") === "acidente") {
+    WBWizard.mount(root, {
+      id: "acidente",
+      titulo: "Pré-análise do auxílio-acidente",
+      subtitulo: "Gratuita · leva menos de 1 minuto",
+      track: root.getAttribute("data-track") || "pre-analise-acidente",
+      intro: "Olá, Dr. Willian! Sofri um acidente e gostaria de saber se tenho direito ao auxílio-acidente.",
+      origemTexto: "Preenchi a pré-análise na página de Auxílio-acidente do site.",
+      botao: "Enviar para o advogado no WhatsApp",
+      aviso: "o preenchimento não garante a concessão de benefício. A análise definitiva depende da avaliação dos documentos pelo advogado.",
+      consentimento: "Autorizo o envio destas informações, incluindo dados de saúde, ao escritório Willian Bocalon Advocacia pelo WhatsApp, para a análise do meu caso.",
+      ordem: ["acidente", "quando", "sequela", "vinculo", "afastamento", "dados"],
+      steps: [
+        { id: "acidente", rotulo: "Tipo de acidente", pergunta: "Que tipo de acidente você sofreu?", tipo: "escolha",
+          opcoes: ["Acidente de trânsito (carro, moto, bicicleta)", "Acidente no trabalho", "Queda, fratura ou acidente em casa", "Outro tipo de acidente"] },
+        { id: "quando", rotulo: "Data do acidente", pergunta: "Quando foi o acidente?", tipo: "mesano", desde: 1990, dica: "Mês e ano aproximados. Se não lembrar o mês, marque só o ano." },
+        { id: "sequela", rotulo: "Parte do corpo afetada", pergunta: "Qual parte do corpo ficou com sequela?", tipo: "texto", exemplo: "Ex.: joelho direito, mão esquerda, coluna, ombro" },
+        { id: "vinculo", rotulo: "Trabalho na época do acidente", pergunta: "Na época do acidente, você trabalhava:", tipo: "escolha",
+          opcoes: ["Com carteira assinada", "Na agricultura (produtor rural)", "Como empregado(a) doméstico(a)", "Como autônomo ou MEI", "Não trabalhava", "Não lembro"] },
+        { id: "afastamento", rotulo: "Afastamento pelo INSS", pergunta: "Depois do acidente, você ficou afastado(a) recebendo do INSS?", tipo: "escolha", opcoes: ["Sim", "Não", "Não sei"] },
+        { id: "dados", tipo: "dados", pergunta: "Para finalizar, onde você mora?", nome: "opcional" }
+      ]
+    });
+    WBWizard.esconderBarra(root);
+    return;
+  }
+
   WBWizard.mount(root, {
     id: "previdencia",
     titulo: "Pré-análise previdenciária",
