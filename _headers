@@ -1,0 +1,10 @@
+# Cabeçalhos de segurança (Cloudflare Pages)
+# ATENÇÃO: o hash 'sha256-...' em script-src é o do script inline do Pixel da Meta, igual em todas as páginas.
+# Se o trecho do Pixel mudar em qualquer página, recalcule o hash, senão o Pixel para de funcionar.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-aC7vayN1g8Mj2Mp/x/tPqjh4GNpt7wstvZUvwowXPyk=' https://connect.facebook.net https://kyvo.dev.br https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
