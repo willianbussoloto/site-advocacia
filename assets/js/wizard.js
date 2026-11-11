@@ -250,7 +250,7 @@
         el("label", { class: "wiz-consent", for: "wiz-" + cfg.id + "-consent" }, [chk, el("span", { text: cfg.consentimento })]),
         el("p", { class: "wiz-privacy-text" }, [
           "Suas respostas não ficam guardadas neste site: elas vão apenas na mensagem que você mesmo envia pelo WhatsApp. Serão usadas só para avaliar o seu caso, pelo advogado Willian Bussolotto Bocalon (OAB/RS 138.665). Você pode pedir a exclusão a qualquer momento pelo mesmo WhatsApp. ",
-          el("a", { href: "politica-de-privacidade.html", target: "_blank", rel: "noopener", text: "Política de Privacidade" })
+          el("a", { href: "/politica-de-privacidade", target: "_blank", rel: "noopener", text: "Política de Privacidade" })
         ])
       ]));
 

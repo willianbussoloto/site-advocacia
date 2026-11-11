@@ -202,4 +202,25 @@
 
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
+
+  // Aviso de cookies: o Pixel da Meta funciona por padrão; quem recusa tem o Pixel desligado (fbq consent revoke)
+  (function () {
+    var KEY = "wb-cookies", escolha = null;
+    try { escolha = localStorage.getItem(KEY); } catch (e) {}
+    if (escolha || !window.fbq) return;
+    var box = document.createElement("div");
+    box.className = "cookies"; box.setAttribute("role", "region"); box.setAttribute("aria-label", "Aviso de cookies");
+    box.innerHTML = '<p>Usamos cookies do Pixel da Meta para medir os anúncios. Suas respostas nos formulários nunca são enviadas. <a href="/politica-de-privacidade">Saiba mais</a></p>' +
+      '<div class="cookies__acoes"><button type="button" class="cookies__nao">Recusar</button><button type="button" class="cookies__ok">OK</button></div>';
+    function fechar(valor) {
+      try { localStorage.setItem(KEY, valor); } catch (e) {}
+      if (valor === "recusado") { try { window.fbq("consent", "revoke"); } catch (e) {} }
+      box.remove();
+    }
+    box.querySelector(".cookies__nao").addEventListener("click", function () { fechar("recusado"); });
+    box.querySelector(".cookies__ok").addEventListener("click", function () { fechar("aceito"); });
+    document.body.appendChild(box);
+    var bar = document.querySelector(".mobile-bar");
+    if (bar && bar.offsetHeight > 0) box.style.bottom = (bar.offsetHeight + 8) + "px";
+  })();
 })();

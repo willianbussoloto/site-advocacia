@@ -3,23 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Advogado de Aposentadoria | Willian Bocalon — Nova Prata/RS e online</title>
-  <meta name="description" content="Quer se aposentar ou teve a aposentadoria negada pelo INSS? Análise do seu tempo de contribuição, regras de transição, aposentadoria especial, rural, por idade e revisões. Atendimento online em todo o Brasil.">
+  <title>Advogado de Aposentadoria (INSS) | Willian Bocalon</title>
+  <meta name="description" content="Aposentadoria negada ou dúvida sobre a melhor regra? Análise do tempo de contribuição, regras de transição, especial, rural e revisões. Atendimento online.">
   <link rel="canonical" href="https://willianbocalon.com.br/aposentadoria">
   <meta property="og:title" content="Aposentadoria pelo INSS — Willian Bocalon Advocacia">
   <meta property="og:description" content="Descubra quando e como se aposentar pela regra mais vantajosa. Pedido negado? Fale com um advogado previdenciarista.">
-  <meta property="og:image" content="https://willianbocalon.com.br/assets/img/logo.png">
+  <meta property="og:image" content="https://willianbocalon.com.br/assets/img/og-willian.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://willianbocalon.com.br/aposentadoria">
+  <meta property="og:site_name" content="Willian Bocalon Advocacia">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0b0b0c">
   <link rel="icon" href="assets/img/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=21">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/merriweather-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/lato-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=22">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Preciso ir até o escritório?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Todo o atendimento pode ser feito online, por WhatsApp e videochamada, de qualquer lugar do Brasil. Se preferir, também atendemos presencialmente em Nova Prata/RS, com agendamento."}}, {"@type": "Question", "name": "Meu pedido foi negado. Ainda tenho chance?", "acceptedAnswer": {"@type": "Answer", "text": "Muitas negativas acontecem por falta de documentos ou por períodos que o INSS não reconheceu. É possível apresentar recurso administrativo dentro do prazo ou ingressar com ação judicial. Cada caso precisa ser analisado individualmente."}}, {"@type": "Question", "name": "O tempo em que trabalhei na roça conta?", "acceptedAnswer": {"@type": "Answer", "text": "Pode contar. O trabalho rural, inclusive em regime de economia familiar, pode ser reconhecido mediante provas documentais e testemunhais, e em muitos casos é somado ao restante do seu histórico."}}, {"@type": "Question", "name": "Qual regra de transição é melhor para mim?", "acceptedAnswer": {"@type": "Answer", "text": "Depende da sua idade, do seu tempo de contribuição e dos seus salários. Por isso simulamos todas as regras possíveis antes de fazer o pedido — a escolha certa pode antecipar a aposentadoria ou aumentar o valor do benefício."}}, {"@type": "Question", "name": "Já sou aposentado. Posso pedir revisão?", "acceptedAnswer": {"@type": "Answer", "text": "Em muitos casos, sim. Em regra, o prazo para pedir a revisão é de 10 anos a contar do primeiro pagamento. Analisamos a sua carta de concessão para verificar se há erros no cálculo."}}, {"@type": "Question", "name": "Como funcionam os honorários?", "acceptedAnswer": {"@type": "Answer", "text": "As condições são apresentadas de forma clara na proposta, depois da análise do seu caso e antes de qualquer contratação — sem surpresas."}}]}
+  </script>
   <!-- Meta Pixel -->
   <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('set', 'autoConfig', false, '1474307888131888');
+  try { if (localStorage.getItem('wb-cookies') === 'recusado') fbq('consent', 'revoke'); } catch (e) {}
   fbq('init', '1474307888131888');
   fbq('track', 'PageView');
   </script>
@@ -30,11 +40,11 @@
 
 <header class="header">
   <div class="wrap">
-    <a class="brand" href="index.html">
+    <a class="brand" href="/">
       <img src="assets/img/logo.png" alt="" width="46" height="43">
       <span><strong>Willian Bocalon</strong><small>Direito Previdenciário</small></span>
     </a>
-    <a class="btn btn--whats" href="#" data-whats data-track="header-aposentadoria">
+    <a class="btn btn--whats" aria-label="Falar com o advogado no WhatsApp" href="#" data-whats data-track="header-aposentadoria">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.97 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.26.1 1.68.79 1.97.94.29.14.48.22.55.34.07.12.07.7-.17 1.38Z"/></svg>
       <span>WhatsApp</span>
     </a>
@@ -258,23 +268,23 @@
 <footer class="footer">
   <div class="wrap footer__grid">
     <div>
-      <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="" width="46" height="43"><span><strong>Willian Bussolotto Bocalon</strong><small>OAB/RS 138.665</small></span></a>
+      <a class="brand" href="/"><img src="assets/img/logo.png" alt="" width="46" height="43"><span><strong>Willian Bussolotto Bocalon</strong><small>OAB/RS 138.665</small></span></a>
       <p>Advocacia com estratégia, humanidade e resultado.</p>
     </div>
     <div>
-      <h4>Atendimento</h4>
+      <h3>Atendimento</h3>
       <ul>
         <li>Nova Prata/RS — Av. Presidente Vargas, 1118, sala 207</li>
         <li>Online em todo o Brasil</li>
       </ul>
     </div>
     <div>
-      <h4>Contato</h4>
+      <h3>Contato</h3>
       <ul>
         <li><a href="https://wa.me/5554920039612" target="_blank" rel="noopener" data-track="footer-aposentadoria">WhatsApp do escritório (54) 92003-9612</a></li>
         <li><a href="https://wa.me/5554996767153" target="_blank" rel="noopener">WhatsApp do Dr. Willian (54) 99676-7153</a></li>
         <li><a href="mailto:bussolottobocalon@gmail.com">bussolottobocalon@gmail.com</a></li>
-        <li><a href="index.html">Conheça o escritório</a></li>
+        <li><a href="/">Conheça o escritório</a></li>
       </ul>
     </div>
   </div>
@@ -286,7 +296,7 @@
   </div>
   <div class="wrap footer__bottom">
     <span>© <span id="year">2026</span> Willian Bocalon Advocacia — Todos os direitos reservados.</span>
-    <span><a href="politica-de-privacidade.html">Política de Privacidade</a></span>
+    <span><a href="/politica-de-privacidade">Política de Privacidade</a></span>
   </div>
   <div class="wrap footer__selo"><kyvo-selo data-tema="escuro"></kyvo-selo></div>
 </footer>
@@ -299,8 +309,8 @@
   <a class="btn btn--whats" href="#" data-whats data-track="mobilebar-aposentadoria">Falar com o advogado no WhatsApp</a>
 </div>
 
-<script src="assets/js/main.js?v=21"></script>
-<script src="assets/js/wizard.js?v=21"></script>
-<script src="assets/js/pre-analise.js?v=21"></script>
+<script src="assets/js/main.js?v=22"></script>
+<script src="assets/js/wizard.js?v=22"></script>
+<script src="assets/js/pre-analise.js?v=22"></script>
 </body>
 </html>
