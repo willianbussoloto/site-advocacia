@@ -3,7 +3,7 @@
 # Se o trecho do Pixel mudar em qualquer página, recalcule o hash, senão o Pixel para de funcionar.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-o2yRxMo4RN1KB49qbcANv9+MSAeUdxHyWmcy/2Fd524=' https://connect.facebook.net https://kyvo.dev.br https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-o2yRxMo4RN1KB49qbcANv9+MSAeUdxHyWmcy/2Fd524=' https://connect.facebook.net https://www.googletagmanager.com https://kyvo.dev.br https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
